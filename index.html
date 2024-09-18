@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="favicon.ico">
+    <title>Calculatrice</title>
+    <link rel="stylesheet" href="dist/styles.css" />
+  </head>
+  <body class="bg-[#202020] grid place-items-center h-screen text-xl">
+    <main class="max-w-xs w-full">
+      <div id="screen" class="w-full flex flex-col justify-around pr-2.5 mb-4 h-20 rounded-xl text-right text-white">
+        <div data-previous-operand class="text-gray-200 text-sm min-h-[20px]"></div>
+        <div data-error class="text-sm font-bold"></div>
+        <div data-current-operand class="text-2xl font-bold">0</div>
+      </div>
+      <div class="grid items-center grid-cols-4 w-full text-gray-200">
+        <!-- Ligne 1 -->
+        <button data-percent class="bg-[#323236] hover:bg-[#3b3b3f] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">%</button>
+        <button data-ce class="bg-[#323236] hover:bg-[#3b3b3f] disabled:opacity-[.55] rounded-md m-px py-3">CE</button>
+        <button data-c class="bg-[#323236] hover:bg-[#3b3b3f] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">C</button>
+        <button data-delete class="bg-[#323236] hover:bg-[#3b3b3f] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">del</button>
+        <!-- Ligne 2 -->
+        <button data-invert class="bg-[#323236] hover:bg-[#3b3b3f] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">1/x</button>
+        <button data-square class="bg-[#323236] hover:bg-[#3b3b3f] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">x²</button>
+        <button data-sqrt class="bg-[#323236] hover:bg-[#3b3b3f] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">√x</button>
+        <button data-operator class="bg-[#323236] hover:bg-[#3b3b3f] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">/</button>
+        <!-- Ligne 3 -->
+        <button data-num class="bg-[#3b3b3f] hover:bg-[#323236] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">7</button>
+        <button data-num class="bg-[#3b3b3f] hover:bg-[#323236] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">8</button>
+        <button data-num class="bg-[#3b3b3f] hover:bg-[#323236] disabled:opacity-[.55] rounded-md m-px py-3">9</button>
+        <button data-operator class="bg-[#323236] hover:bg-[#3b3b3f] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">x</button>
+        <!-- Ligne 4 -->
+        <button data-num class="bg-[#3b3b3f] hover:bg-[#323236] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">4</button>
+        <button data-num class="bg-[#3b3b3f] hover:bg-[#323236] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">5</button>
+        <button data-num class="bg-[#3b3b3f] hover:bg-[#323236] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">6</button>
+        <button data-operator class="bg-[#323236] hover:bg-[#3b3b3f] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">-</button>
+        <!-- Ligne 5 -->
+        <button data-num class="bg-[#3b3b3f] hover:bg-[#323236] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">1</button>
+        <button data-num class="bg-[#3b3b3f] hover:bg-[#323236] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">2</button>
+        <button data-num class="bg-[#3b3b3f] hover:bg-[#323236] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">3</button>
+        <button data-operator class="bg-[#323236] hover:bg-[#3b3b3f] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">+</button>
+        <!-- Ligne 6 -->
+        <button data-negate class="bg-[#3b3b3f] hover:bg-[#323236] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">±</button>
+        <button data-num class="bg-[#3b3b3f] hover:bg-[#323236] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">0</button>
+        <button data-num data-dot class="bg-[#3b3b3f] hover:bg-[#323236] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">.</button>
+        <button data-result class="bg-[#4cc2ff] hover:bg-[#47b1e9] disabled:opacity-[.55] rounded-md m-px py-3 transition-colors">=</button>
+      </div>
+    </main>
+    <script src="dist/script.js"></script>
+  </body>
+</html>
