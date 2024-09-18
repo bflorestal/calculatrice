@@ -7,6 +7,7 @@
   "main": "./dist/main.js",
   "scripts": {
     "build": "npx tailwindcss -i ./src/styles.css -o ./dist/styles.css && tsc",
+    "clean": "git clean -xdf dist node_modules",
     "start": "npm run build && electron .",
     "watchcss": "npx tailwindcss -i ./src/styles.css -o ./dist/styles.css --watch",
     "watchjs": "tsc --watch"
