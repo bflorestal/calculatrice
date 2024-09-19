@@ -26,10 +26,17 @@ const dotBtn = document.querySelector("[data-dot]");
 
 type Operation = "+" | "-" | "x" | "/";
 
+const ADD = "+";
+const SUBTRACT = "-";
+const MULTIPLY = "x";
+const DIVIDE = "/";
+
 let prevOperand = prevOperandText.textContent || "";
 let currentOperand = currentOperandText.textContent || "0";
 let operation: Operation | undefined;
+
 let hasError = false;
+const ERROR_DIVIDE_BY_ZERO = "Désolé... Nous ne pouvons pas diviser par zéro";
 
 // ----- Fonctions
 function setErrorMessage(message: string) {
@@ -84,7 +91,12 @@ function displayNumber() {
 }
 
 function isValidOperation(value: string): value is Operation {
-  return value === "+" || value === "-" || value === "x" || value === "/";
+  return (
+    value === ADD ||
+    value === SUBTRACT ||
+    value === MULTIPLY ||
+    value === DIVIDE
+  );
 }
 
 function isDivideByZero(number: number): boolean {
@@ -108,21 +120,21 @@ function calculatorOperation() {
   let prev = parseFloat(prevOperand);
 
   switch (operation) {
-    case "/":
+    case DIVIDE:
       // prettier-ignore
-      if (handleError(isDivideByZero(current), "Désolé... Nous ne pouvons pas diviser par zéro")) return;
+      if (handleError(isDivideByZero(current), ERROR_DIVIDE_BY_ZERO)) return;
       result = prev / current;
       break;
 
-    case "x":
+    case MULTIPLY:
       result = prev * current;
       break;
 
-    case "-":
+    case SUBTRACT:
       result = prev - current;
       break;
 
-    case "+":
+    case ADD:
       result = prev + current;
       break;
   }
