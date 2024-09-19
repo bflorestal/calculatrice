@@ -49,6 +49,14 @@ function setErrorMessage(message: string) {
   buttonsToDisable.forEach((btn) => btn?.setAttribute("disabled", ""));
 }
 
+function handleError(condition: boolean, message: string) {
+  if (condition) {
+    setErrorMessage(message);
+    return true;
+  }
+  return false;
+}
+
 function addNumber(number: string) {
   if (currentOperand?.includes(".") && number === ".") return;
   if (currentOperand === "0" && number === "0") return;
@@ -101,10 +109,8 @@ function calculatorOperation() {
 
   switch (operation) {
     case "/":
-      if (isDivideByZero(current)) {
-        setErrorMessage("Désolé... Nous ne pouvons pas diviser par zéro");
-        return;
-      }
+      // prettier-ignore
+      if (handleError(isDivideByZero(current), "Désolé... Nous ne pouvons pas diviser par zéro")) return;
       result = prev / current;
       break;
 
