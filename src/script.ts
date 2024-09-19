@@ -32,6 +32,23 @@ let operation: Operation | undefined;
 let hasError = false;
 
 // ----- Fonctions
+function setErrorMessage(message: string) {
+  hasError = true;
+  if (errorText) {
+    errorText.textContent = message;
+  }
+  const buttonsToDisable = [
+    percentBtn,
+    invertBtn,
+    squareBtn,
+    squareRootBtn,
+    ...operatorBtn,
+    negateBtn,
+    dotBtn,
+  ];
+  buttonsToDisable.forEach((btn) => btn?.setAttribute("disabled", ""));
+}
+
 function addNumber(number: string) {
   if (currentOperand?.includes(".") && number === ".") return;
   if (currentOperand === "0" && number === "0") return;
@@ -62,6 +79,10 @@ function isValidOperation(value: string): value is Operation {
   return value === "+" || value === "-" || value === "x" || value === "/";
 }
 
+function isDivideByZero(number: number): boolean {
+  return number === 0;
+}
+
 function selectOperation(operator: Operation) {
   if (prevOperand !== "") {
     calculatorOperation();
@@ -80,9 +101,8 @@ function calculatorOperation() {
 
   switch (operation) {
     case "/":
-      if (current === 0) {
-        hasError = true;
-        errorMode("Désolé... Nous ne pouvons pas diviser par zéro");
+      if (isDivideByZero(current)) {
+        setErrorMessage("Désolé... Nous ne pouvons pas diviser par zéro");
         return;
       }
       result = prev / current;
@@ -155,23 +175,6 @@ function calculateSqrt() {
   if (currentOperand) {
     currentOperand = `${Math.sqrt(parseFloat(currentOperand))}`;
     displayNumber();
-  }
-}
-
-function errorMode(error: string) {
-  if (errorText && hasError) {
-    errorText.textContent = error;
-    currentOperand = "";
-    const buttonsToDisable = [
-      percentBtn,
-      invertBtn,
-      squareBtn,
-      squareRootBtn,
-      ...operatorBtn,
-      negateBtn,
-      dotBtn,
-    ];
-    buttonsToDisable.forEach((btn) => btn?.setAttribute("disabled", ""));
   }
 }
 
