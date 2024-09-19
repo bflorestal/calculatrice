@@ -27,20 +27,30 @@ jobs:
       - name: Package the application
         run: npm run make
 
+      - name: Get package version
+        id: get_version
+        run: echo "VERSION=$(jq -r '.version' package.json)" >> $GITHUB_ENV
+
+      - name: Create Git Tag
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git tag -a v${{ env.VERSION }} -m "Release v${{ env.VERSION }}"
+          git push origin v${{ env.VERSION }}
+
       - name: Upload Release Assets
         uses: softprops/action-gh-release@v1
         with:
           files: |
             out/make/**/*
-
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create Release Draft
+      - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          name: "Release for commit ${{ github.sha }}"
-          tag: "v${{ github.sha }}"
+          name: "Release v${{ env.VERSION }}"
+          tag: "v${{ env.VERSION }}"
           draft: false
           prerelease: false
           files: |
