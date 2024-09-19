@@ -8,16 +8,29 @@
   "scripts": {
     "build": "npx tailwindcss -i ./src/styles.css -o ./dist/styles.css && tsc",
     "clean": "git clean -xdf dist node_modules",
-    "start": "npm run build && electron .",
+    "start": "electron-forge start",
     "watchcss": "npx tailwindcss -i ./src/styles.css -o ./dist/styles.css --watch",
-    "watchjs": "tsc --watch"
+    "watchjs": "tsc --watch",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "keywords": [],
   "author": "Bryan Florestal",
   "license": "ISC",
   "devDependencies": {
+    "@electron-forge/cli": "^7.4.0",
+    "@electron-forge/maker-deb": "^7.4.0",
+    "@electron-forge/maker-rpm": "^7.4.0",
+    "@electron-forge/maker-squirrel": "^7.4.0",
+    "@electron-forge/maker-zip": "^7.4.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.4.0",
+    "@electron-forge/plugin-fuses": "^7.4.0",
+    "@electron/fuses": "^1.8.0",
     "electron": "^32.1.1",
     "tailwindcss": "^3.4.12",
     "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.1"
   }
 }
