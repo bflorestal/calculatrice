@@ -8,11 +8,12 @@
   "scripts": {
     "build": "npx tailwindcss -i ./src/styles.css -o ./dist/styles.css && tsc",
     "clean": "git clean -xdf dist node_modules",
-    "start": "electron-forge start",
-    "watchcss": "npx tailwindcss -i ./src/styles.css -o ./dist/styles.css --watch",
-    "watchjs": "tsc --watch",
+    "make": "electron-forge make",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "start": "electron-forge start",
+    "typecheck": "tsc --noEmit",
+    "watchcss": "npx tailwindcss -i ./src/styles.css -o ./dist/styles.css --watch",
+    "watchjs": "tsc --watch"
   },
   "keywords": [],
   "author": "Bryan Florestal",
